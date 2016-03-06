@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Петиции</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div id="container">
+      <div id="user_hader" align="right">
+        <% if current_user %>
+            <p align="left">Петиции нашего района</p>
+            <%= current_user.email %>
+            <%= link_to "Выйти", signout_path, method: "delete"  %>
+        <% else %>
+            <%= link_to "Зарегистрироваться", new_user_path %> |
+            <%= link_to "Войти", new_session_path %>
+        <% end %>
+      </div>
+      <div align="right"><%= link_to "Все петиции", petitions_index_path %></div>
+      <div align="right">
+        <% if signed_in? %>
+            <%= link_to "Создать петицию", petitions_new_path %>
+            <div><%= link_to "Мои петиции", show_users_path%></div>
+        <% else %>
+            <%= link_to "Создать петицию", sessions_new_path%>
+        <% end %>
+       </div>
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, id: "flash_#{:last_name}" %>
+      <% end %>
+
+      <%= yield %>
+    </div>
+</body>
+</html>

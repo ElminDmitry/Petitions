@@ -1,0 +1,15 @@
+<h1>Вход</h1>
+
+<%= form_for(:session, url: sessions_path) do |f| %>
+    <div>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+
+    <div>
+      <%= f.label "Пароль" %>
+      <%= f.password_field :password %>
+    </div>
+
+    <div class="action"><%= submit_tag "Войти" %></div>
+<% end %>

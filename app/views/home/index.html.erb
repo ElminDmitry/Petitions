@@ -1,0 +1,26 @@
+<h1>Последние петиции</h1>
+
+<table align="center" width="1300">
+
+  <tr>
+    <th>Петиция</th>
+    <th>Автор</th>
+  </tr>
+  <tr><td><%= Petition.first %></td><td>10 авторов</td></tr>
+
+</table><p></p>
+
+<table width="1300" align="center">
+  <tr>
+    <th>Петиция</th>
+    <th>Автор</th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% @petitions.each do |petition| %>
+      <tr>
+        <td><%= petition.title %></td>
+        <td><%= petition.text %></td>
+      </tr>
+  <% end %>
+</table>
