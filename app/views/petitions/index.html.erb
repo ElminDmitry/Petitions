@@ -1,15 +1,21 @@
-<h2>Все петиции</h2>
-<table align="left" width="900">
+<h2><%= params[:my] ? 'Мои' : 'Все' %> петиции</h2>
+<% #byebug %>
+
+<% if params[:my] %>
+    <%= render 'petitions/my_index' %>
+<% else %>
+<table class="table">
+  <thead>
   <tr>
     <th>Петиция</th>
     <th>Автор</th>
-    <th colspan="2"></th>
+    <th>Голоса</th>
+    <th>Дата создания</th>
   </tr>
-
+  </thead>
   <% @petitions.each do |petition| %>
-      <tr>
-        <td><%=link_to petition.title, petition %></td>
-        <td><%= petition.user.first_name%> <%= petition.user.last_name %></td>
-      </tr>
+      <%= render 'petition', petition: petition %>
   <% end %>
+<% end %>
+
 </table>

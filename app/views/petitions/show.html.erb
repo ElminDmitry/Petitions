@@ -1,4 +1,11 @@
 <h1>Петиция</h1>
 
 <div><h3><%= @petition.title %></h3></div>
-<div><%= @petition.text %></div>
+<p><%= @petition.created_at.strftime("%m/%d/%Y %I:%M") %></p><br />
+<p><%= @petition.text %></p>
+Голосов:<%= @petition.votes.count %>
+<% if  @petition.user != current_user %>
+    <%= button_to "Поддержать", votes_path(@petition), method: :post %>
+<% else %>
+
+<% end %>

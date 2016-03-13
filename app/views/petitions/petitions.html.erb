@@ -1,15 +1,14 @@
 <h2>Последние петиции</h2>
-<table align="left" width="900">
+<table class="table">
+  <thead>
   <tr>
     <th>Петиция</th>
     <th>Автор</th>
-    <th colspan="2"></th>
+    <th>Голоса</th>
+    <th>Дата создания</th>
   </tr>
-
+  </thead>
   <% @petitions.each do |petition| %>
-      <tr>
-        <td><%=link_to petition.title, petition %></td>
-        <td><%= petition.user.first_name%> <%= petition.user.last_name %></td>
-      </tr>
+      <%= render 'petitions/petition', petition: petition %>
   <% end %>
 </table>

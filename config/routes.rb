@@ -8,19 +8,23 @@ Rails.application.routes.draw do
    get 'petitions/index'
    get 'petitions/new'
    get 'sessions/new'
-
+   get 'signup', to: 'users#new', as: 'signup'
+   get 'login', to: 'sessions#new', as: 'login'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+
   match '/show_users', to: 'users#show',     via: 'get'
   match '/home_index', to: 'home#index',     via: 'get'
+  #match '/petition_edit', to: 'petitions#edit',     via: 'post'
   # Example resource route (maps HTTP verbs to controller actions automatically):
      resources :petitions
      resources :users
      resources :sessions
+     resources :votes
 
   # Example resource route with options:
   #   resources :products do
