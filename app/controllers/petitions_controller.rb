@@ -23,13 +23,16 @@ class PetitionsController < ApplicationController
     # else
     #   render 'edit'
     # end
-    @petition = Petition.find_by(id: params[:id])
-    if @petition.update(params)
-      flash[:success] = "Петиция обновлена"
-      redirect_to @petition
-    else
-      render 'petitions/edit'
-    end
+    # @petition = Petition.find_by(id: params[:id])
+    # if @petition.update(params)
+    #   flash[:success] = "Петиция обновлена"
+    #   redirect_to @petition
+    # else
+    #   render 'petitions/edit'
+    # end
+    petition = current_user.petitions.find(params[:id])
+    petition.update(petition_params)
+    redirect_to petition, notice: 'Петиция обновлена'
   end
 
   # POST /petitions
@@ -37,7 +40,7 @@ class PetitionsController < ApplicationController
     @petition = current_user.petitions.create(petition_params)
     if @petition.save
       flash[:success] = "Петиция добавлена"
-      redirect_to root_url
+      redirect_to petitions_path(my: true)
     else
       render new_petition_path
     end
@@ -53,7 +56,8 @@ class PetitionsController < ApplicationController
   end
 
   def edit
-    @petition = Petition.find_by(id: params[:id])
+    @petition = current_user.petitions.find(params[:id])
+    #@petition = Petition.find_by(id: params[:id])
     # petition.update(petition_params)
     # redirect_to petition_path(petition)
     # @petition = Petition.find(params[:id])
@@ -77,6 +81,6 @@ class PetitionsController < ApplicationController
   private
 
   def petition_params
-    params.require(:petition).permit(:id, :title, :text)
+    params.require(:petition).permit(:title, :text)
   end
 end

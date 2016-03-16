@@ -1,6 +1,6 @@
 <h2>Изменение петиции</h2>
 
-<%= form_for :petition, url: petition_path(@petition), method: :patch do |f| %>
+<%= form_for @petition do |f| %>
     <% if @petition.errors.any? %>
         <div class="error_message">
           <h2>Form is invalid</h2>

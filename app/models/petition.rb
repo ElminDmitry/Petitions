@@ -5,4 +5,8 @@ class Petition < ActiveRecord::Base
   validates :title, presence: true
   validates :text, presence: true
   validates :user_id, presence: true
+
+  def voted_by?(user)
+    votes.where(user_id: user.id).any?
+  end
 end
