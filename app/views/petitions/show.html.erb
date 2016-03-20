@@ -4,10 +4,11 @@
 <p><%= @petition.created_at.strftime("%m/%d/%Y %I:%M") %></p><br />
 <p><%= @petition.text %></p>
 <p>Голосов:<%= @petition.votes.count %></p><br />
+<!--distance_of_time_in_words_to_now(Petition.last.created_at).delete("days").to_i-->
 <% if  @petition.voted_by?(current_user) %>
     Вы уже проголосовали за данную петицию
-<% elsif @petition.user != current_user %>
-    <%= button_to "Поддержать", votes_path({ petition_id: @petition.id }), method: :post %>
+<% elsif @petition.user != current_user and !@petition.expired?(@petition.id) %>
+    <%= button_to "Поддержать", votes_path(@petition, { petition_id: @petition.id }), method: :post %>
 <% else %>
 
 <% end %>

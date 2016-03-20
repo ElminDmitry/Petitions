@@ -13,7 +13,11 @@
           <td><%= link_to petition.title, petition_path(petition) %></td>
           <td><%= petition.votes.count %></td>
           <td><%= petition.created_at.strftime("%m/%d/%Y %I:%M") %></td>
+          <% if petition.created_at > 30.days.ago %>
           <td><%= link_to "Изменить", edit_petition_path(petition) %></td>
+          <% else %>
+          <td></td>
+          <% end %>
           <td><%= link_to "Удалить", petition, method: :delete %> </td>
         </tr>
     <% end %>

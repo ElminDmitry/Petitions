@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311001818) do
+ActiveRecord::Schema.define(version: 20160320152409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160311001818) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "expired",    default: "false"
   end
 
   add_index "petitions", ["user_id", "created_at"], name: "index_petitions_on_user_id_and_created_at", using: :btree

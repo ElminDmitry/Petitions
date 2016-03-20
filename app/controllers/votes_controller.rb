@@ -1,15 +1,12 @@
 class VotesController < ApplicationController
 
-
   def create
-    # @petition = Petition.find(params[:format])
-    # @petition.votes.create(current_user[:user_id])
-    vote = current_user.votes.create(permitted_params)
+    vote = current_user.votes.create(permitt_params)
+    @petition = Petition.find(vote[:petition_id])
     redirect_to petitions_index_path, notice: 'Спасибо за поддержку!'
-    #redirect_to petitions_index_path
   end
 
-  def permitted_params
+  def permitt_params
     params.permit(:petition_id)
   end
 

@@ -13,26 +13,13 @@ class PetitionsController < ApplicationController
 
   # PUT /petitions/1
   def update
-    # petition = Petition.find(params[:id])
-    # petition.update(params)
-    # redirect_to petition_path(petition)
-    # petition = Petition.find(params[:id])
-    # if petition.update_attributes(petition_params)
-    #   flash[:success] = "Петиция обновлена"
-    #   redirect_to @petition
-    # else
-    #   render 'edit'
-    # end
-    # @petition = Petition.find_by(id: params[:id])
-    # if @petition.update(params)
-    #   flash[:success] = "Петиция обновлена"
-    #   redirect_to @petition
-    # else
-    #   render 'petitions/edit'
-    # end
     petition = current_user.petitions.find(params[:id])
-    petition.update(petition_params)
-    redirect_to petition, notice: 'Петиция обновлена'
+    if petition.expired?(petition.id)
+      redirect_to petition, notice: 'Срок голосования петиции прошел'
+    else
+      petition.update(petition_params)
+      redirect_to petition, notice: 'Петиция обновлена'
+    end
   end
 
   # POST /petitions
@@ -56,22 +43,12 @@ class PetitionsController < ApplicationController
   end
 
   def edit
+    byebug
     @petition = current_user.petitions.find(params[:id])
-    #@petition = Petition.find_by(id: params[:id])
-    # petition.update(petition_params)
-    # redirect_to petition_path(petition)
-    # @petition = Petition.find(params[:id])
-    # if @petition.update_attributes(petition_params)
-    #     flash[:success] = "Петиция обновлена"
-    #     redirect_to @petition
-    #   else
-    #     render 'edit'
-    #   end
   end
 
   def destroy
     @petition = Petition.find_by(id: params[:id])
-    #@petitions = @petitions.where(user: current_user)
     @petition.destroy
     flash[:success] = "Петиция удалена"
     params[:my] = true
