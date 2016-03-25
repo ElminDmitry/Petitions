@@ -1,3 +1,5 @@
 <p>Здравствуйте, <%= @user.first_name %></p>
 
-<p>К сожалению, ваша петиция  "<%= @petition.title %>"  собрала только <%= @petition.votes.count %> голосов из необходимых <%= @need_votes %>.</p>
+<p>К сожалению, ваша петиция  "<%= @petition.title %>"  собрала только <%= @petition.votes.count %> голосов
+  из необходимых <%= Petition::NEED_VOTES %>.
+</p>

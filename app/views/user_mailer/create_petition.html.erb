@@ -1,0 +1,5 @@
+<p>Здравствуйте, <%= @user.first_name %></p>
+
+<p>ваша петиция  "<%= @petition.title %>"  опубликована. У вас есть <%= Petition::ACTIVE_DAYS %> дней, чтобы
+  набрать <%= Petition::NEED_VOTES %> голосов.
+</p>

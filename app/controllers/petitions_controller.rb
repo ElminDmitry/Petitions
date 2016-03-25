@@ -27,6 +27,7 @@ class PetitionsController < ApplicationController
     @petition = current_user.petitions.create(petition_params)
     if @petition.save
       flash[:success] = "Петиция добавлена"
+      UserMailer.create_petition(@petition).deliver_later
       redirect_to petitions_path(my: true)
     else
       render new_petition_path
@@ -43,7 +44,6 @@ class PetitionsController < ApplicationController
   end
 
   def edit
-    byebug
     @petition = current_user.petitions.find(params[:id])
   end
 

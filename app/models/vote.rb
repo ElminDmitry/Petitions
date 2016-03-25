@@ -5,6 +5,6 @@ class Vote < ActiveRecord::Base
   validate :active_petition, on: :create
 
   def active_petition
-    errors.add(:petition_id, "is not active") if :petition.expired?(petition_id)
+    errors.add(:petition_id, 'is not active') if :petition.expired?(petition_id)
   end
 end
