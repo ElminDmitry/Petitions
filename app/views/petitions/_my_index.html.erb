@@ -15,7 +15,7 @@
           <td><%= petition.votes.count %></td>
           <td><%= petition.created_at.strftime("%m/%d/%Y %I:%M") %></td>
           <td><%= days_last(petition.created_at) %></td>
-          <% if petition.created_at > 30.days.ago %>
+          <% if petition.created_at > 90.days.ago %>
           <td><%= link_to "Изменить", edit_petition_path(petition) %></td>
           <% else %>
           <td></td>

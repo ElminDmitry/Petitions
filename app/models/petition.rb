@@ -1,7 +1,8 @@
 class Petition < ActiveRecord::Base
   belongs_to :user
   has_many :votes
-  ACTIVE_DAYS = 30
+  has_and_belongs_to_many :genres
+  ACTIVE_DAYS = 90
   NEED_VOTES = 100
   default_scope -> { order('created_at DESC') }
   validates :title, presence: true

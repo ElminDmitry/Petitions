@@ -1,13 +1,18 @@
 <h1>Петиция</h1>
 
 <div><h3><%= @petition.title %></h3></div>
-<p><%= @petition.created_at.strftime("%m/%d/%Y %I:%M") %></p><br />
-<p><%= @petition.text %></p>
-<p>Голосов:<%= @petition.votes.count %></p><br />
+<p><%= @petition.created_at.strftime("%m/%d/%Y %I:%M") %></p>
+<p>
+  <strong>Категории:</strong>
+  <%= @petition.genres.map(&:name).sort.join(", ") %>
+</p><br />
+<p><h2><%= @petition.text %></h2></p>
+<p>Голосов: <%= @petition.votes.count %> из <%= Petition::NEED_VOTES %></p><br />
 <% if  @petition.voted_by?(current_user) %>
     Вы уже проголосовали за данную петицию
 <% elsif @petition.user != current_user and !@petition.expired?(@petition.id) %>
-    <%= button_to "Поддержать", votes_path(@petition, { petition_id: @petition.id }), method: :post %>
+    <%= button_to("Поддержать", votes_path(@petition, { petition_id: @petition.id }),
+                  class: 'btn btn-primary btn-sm', method: :post) %>
 <% else %>
 
 <% end %>

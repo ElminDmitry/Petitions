@@ -21,6 +21,16 @@
       <%= f.text_area :text, class: 'form-control' %>
     </div>
 
+    <div class="field">
+      <%= f.label "Категории" %><br />
+      <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name do |b| %>
+          <div class="collection-check-box">
+            <%= b.check_box %>
+            <%= b.label %>
+          </div>
+      <% end %>
+    </div><br />
+
     <div class="action">
       <%= submit_tag 'Cоздать', class: 'btn btn-success' %>
     </div>

@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320152409) do
+ActiveRecord::Schema.define(version: 20160424191808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "genres", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres_petitions", id: false, force: :cascade do |t|
+    t.integer "genre_id",    null: false
+    t.integer "petition_id", null: false
+  end
 
   create_table "petitions", force: :cascade do |t|
     t.string   "title"
@@ -23,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160320152409) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "expired",    default: "false"
+    t.string   "genre"
   end
 
   add_index "petitions", ["user_id", "created_at"], name: "index_petitions_on_user_id_and_created_at", using: :btree

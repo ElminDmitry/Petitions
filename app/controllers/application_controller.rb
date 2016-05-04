@@ -13,4 +13,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+  def authorize
+    redirect_to login_url, alert: 'Вы не авторизованы' if current_user.nil?
+  end
 end

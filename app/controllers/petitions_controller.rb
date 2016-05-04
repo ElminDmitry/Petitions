@@ -1,5 +1,5 @@
 class PetitionsController < ApplicationController
-  #before_action :signed_in_user
+  before_filter :authorize, only: [:new, :create]
   # GET /petitions
   def index
     @petitions = Petition.all
@@ -11,15 +11,8 @@ class PetitionsController < ApplicationController
     @petition = Petition.find(params[:id])
   end
 
-  # PUT /petitions/1
-  def update
-    petition = current_user.petitions.find(params[:id])
-    if petition.expired?(petition.id)
-      redirect_to petition, notice: 'Срок голосования петиции прошел'
-    else
-      petition.update(petition_params)
-      redirect_to petition, notice: 'Петиция обновлена'
-    end
+  def edit
+    @petition = current_user.petitions.find(params[:id])
   end
 
   # POST /petitions
@@ -43,8 +36,15 @@ class PetitionsController < ApplicationController
     @petitions = Petition.first(10)
   end
 
-  def edit
-    @petition = current_user.petitions.find(params[:id])
+  # PUT /petitions/1
+  def update
+    petition = current_user.petitions.find(params[:id])
+    # if petition.expired?(petition.id)
+    #   redirect_to petition, notice: 'Срок голосования петиции прошел'
+    # else
+    petition.update(petition_params)
+    redirect_to petition, notice: 'Петиция обновлена'
+    # end
   end
 
   def destroy
@@ -58,6 +58,6 @@ class PetitionsController < ApplicationController
   private
 
   def petition_params
-    params.require(:petition).permit(:title, :text)
+    params.require(:petition).permit(:title, :text, genre_ids:[])
   end
 end
