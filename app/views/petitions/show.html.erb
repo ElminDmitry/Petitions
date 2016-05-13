@@ -12,7 +12,13 @@
     Вы уже проголосовали за данную петицию
 <% elsif @petition.user != current_user and !@petition.expired?(@petition.id) %>
     <%= button_to("Поддержать", votes_path(@petition, { petition_id: @petition.id }),
-                  class: 'btn btn-primary btn-sm', method: :post) %>
+                  class: 'btn btn-primary btn-sm', method: :post) %><br />
 <% else %>
 
 <% end %>
+<strong>Поддержавшие пользователи:</strong>
+<p><% @petition.votes.each do |vote| %>
+      <%= vote.user.first_name %>
+      <%= vote.user.last_name %>
+  <% end %>
+</p>

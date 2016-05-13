@@ -16,4 +16,9 @@ class Petition < ActiveRecord::Base
   def expired?(id)
     user.petitions.find_by(id: id).created_at < ACTIVE_DAYS.days.ago
   end
+
+  def self.search(search)
+    Petition.where("title ILIKE ?", "%#{search}%")
+    Petition.where("text ILIKE ?", "%#{search}%")
+  end
 end

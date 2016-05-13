@@ -3,6 +3,7 @@ class PetitionsController < ApplicationController
   # GET /petitions
   def index
     @petitions = Petition.all
+    @petitions = Petition.search(params[:search]).order("created_at DESC") if params[:search]
     @petitions = @petitions.where(user: current_user) if params[:my]
   end
 
@@ -32,8 +33,13 @@ class PetitionsController < ApplicationController
     @petition = current_user.petitions.new
   end
 
+  def search
+    @search = Petition.search(params[:q])
+    @petitions = @search.result(distinct: true)
+  end
+
   def petitions
-    @petitions = Petition.first(10)
+    @petitions = Petition.order(created_at: :desc).limit(10)
   end
 
   # PUT /petitions/1

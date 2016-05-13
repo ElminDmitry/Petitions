@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root 'petitions#petitions'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -19,6 +18,7 @@ Rails.application.routes.draw do
 
   match '/show_users', to: 'users#show',     via: 'get'
   match '/home_index', to: 'home#index',     via: 'get'
+  # match '/petitions_search', to: 'petitions#search',     via: 'get'
   #match '/petition_edit', to: 'petitions#edit',     via: 'post'
   # Example resource route (maps HTTP verbs to controller actions automatically):
      resources :petitions

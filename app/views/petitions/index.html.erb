@@ -1,5 +1,4 @@
 <h2><%= params[:my] ? 'Мои' : 'Все' %> петиции</h2>
-<% #byebug %>
 
 <% if params[:my] %>
     <%= render 'petitions/my_index' %>
@@ -20,3 +19,8 @@
 <% end %>
 
 </table>
+
+<%= form_tag(petitions_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Petitions" %>
+    <%= submit_tag "Search" %>
+<% end %>
