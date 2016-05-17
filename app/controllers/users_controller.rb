@@ -5,7 +5,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
+    unless simple_captcha_valid?
+      flash[:failure] = "Код с картинки не верный!"
+      render "new" and return
+    end
+    if @user.save && simple_captcha_valid?
       flash[:success] = "Спасибо за регистрацию!"
       redirect_to root_url
     else

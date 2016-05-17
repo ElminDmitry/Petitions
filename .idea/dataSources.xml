@@ -5,6 +5,8 @@
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1/petitions_development</jdbc-url>
+      <user-name>kevin</user-name>
+      <user-password>dfc1dfcfdfdcdfc3dfc4</user-password>
       <libraries>
         <library>
           <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/postgresql-driver-license.txt</url>
@@ -18,6 +20,8 @@
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1/petitions_test</jdbc-url>
+      <user-name>kevin</user-name>
+      <user-password>dfc1dfcfdfdcdfc3dfc4</user-password>
       <libraries>
         <library>
           <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/postgresql-driver-license.txt</url>
@@ -31,6 +35,8 @@
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1/petitions_production</jdbc-url>
+      <user-name>kevin</user-name>
+      <user-password>dfc1dfcfdfdcdfc3dfc4</user-password>
       <libraries>
         <library>
           <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/postgresql-driver-license.txt</url>
@@ -42,3 +48,4 @@
     </data-source>
   </component>
 </project>
+

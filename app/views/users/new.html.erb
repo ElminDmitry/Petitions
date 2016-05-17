@@ -36,5 +36,8 @@
     <%= f.label :title, 'Подтверждение пароля' %>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
+
+    <%= show_simple_captcha %><br />
+
   <div class="action"><%= submit_tag 'Зарегистрироваться', class: 'btn btn-primary'%></div>
 <% end %>

@@ -64,6 +64,6 @@ class PetitionsController < ApplicationController
   private
 
   def petition_params
-    params.require(:petition).permit(:title, :text, genre_ids:[])
+    params.require(:petition).permit(:title, :text, :captcha, :captcha_key, genre_ids:[])
   end
 end
